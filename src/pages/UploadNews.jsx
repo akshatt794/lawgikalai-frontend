@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function UploadNews() {
   const [title, setTitle] = useState("");
@@ -16,7 +17,7 @@ export default function UploadNews() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "https://lawgikalai-auth-api.onrender.com/api/news/upload",
+        `${API_URL}/api/news/upload`,
         { title, content, image },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -33,7 +34,7 @@ export default function UploadNews() {
   return (
     <div
       style={{
-        minHeight: "calc(100vh - 80px)", // adjust for your navbar height if needed
+        minHeight: "calc(100vh - 80px)",
         width: "100vw",
         display: "flex",
         alignItems: "center",

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Login() {
   const [identifier, setIdentifier] = useState("");
@@ -13,7 +14,7 @@ export default function Login() {
     setMsg("");
     try {
       const res = await axios.post(
-        "https://lawgikalai-auth-api.onrender.com/api/auth/login",
+        `${API_URL}/api/auth/login`,
         { identifier, password }
       );
       localStorage.setItem("token", res.data.token);
@@ -25,35 +26,27 @@ export default function Login() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        minWidth: "100vw",
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "linear-gradient(120deg, #4751f3 0%, #23233b 100%)",
-      }}
-    >
+    <div style={{
+      minHeight: "100vh",
+      background: "linear-gradient(120deg, #2b2d42 0%, #575ecf 100%)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}>
       <form
         onSubmit={handleLogin}
         style={{
-          background: "#181925",
-          padding: "38px 32px 28px",
-          borderRadius: 18,
-          boxShadow: "0 8px 40px 0 rgba(31,38,135,0.25)",
-          width: "100%",
-          maxWidth: 380,
+          background: "#232323",
+          padding: "40px 32px 28px",
+          borderRadius: 16,
+          boxShadow: "0 8px 32px 0 rgba(31,38,135,0.2)",
+          width: 350,
           display: "flex",
           flexDirection: "column",
-          gap: 16,
-        }}
-      >
+        }}>
         <h2 style={{
           color: "#fff",
-          marginBottom: 12,
+          marginBottom: 28,
           textAlign: "center",
           letterSpacing: 1
         }}>
@@ -65,13 +58,13 @@ export default function Login() {
           onChange={(e) => setIdentifier(e.target.value)}
           required
           style={{
-            padding: "13px",
+            padding: "12px",
+            marginBottom: 16,
             borderRadius: 8,
-            border: "1px solid #35385a",
-            background: "#202238",
+            border: "1px solid #444",
+            background: "#191923",
             color: "#fff",
-            fontSize: "1rem",
-            outline: "none"
+            fontSize: "1rem"
           }}
         />
         <input
@@ -81,38 +74,34 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
           style={{
-            padding: "13px",
+            padding: "12px",
+            marginBottom: 20,
             borderRadius: 8,
-            border: "1px solid #35385a",
-            background: "#202238",
+            border: "1px solid #444",
+            background: "#191923",
             color: "#fff",
-            fontSize: "1rem",
-            outline: "none"
+            fontSize: "1rem"
           }}
         />
         <button
           type="submit"
           style={{
-            padding: "13px",
-            background: "linear-gradient(90deg, #5571f9 0%, #6e8efb 100%)",
+            padding: "12px",
+            background: "linear-gradient(90deg, #575ecf 20%, #6e8efb 100%)",
             color: "#fff",
             border: "none",
             borderRadius: 8,
             fontSize: "1rem",
             fontWeight: 600,
+            boxShadow: "0 2px 8px 0 rgba(87,94,207,0.13)",
             cursor: "pointer",
-            transition: "0.2s",
-            marginTop: 6,
-            boxShadow: "0 2px 8px 0 rgba(87,94,207,0.15)",
+            transition: "0.2s"
           }}
         >
           Login
         </button>
         {msg && (
-          <p style={{
-            color: msg === "Login successful!" ? "#00D98C" : "#ff4e4e",
-            marginTop: 15, textAlign: "center"
-          }}>
+          <p style={{ color: msg === "Login successful!" ? "#00D98C" : "#ff4e4e", marginTop: 20, textAlign: "center" }}>
             {msg}
           </p>
         )}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function AllNews() {
   const [news, setNews] = useState([]);
@@ -7,7 +8,7 @@ export default function AllNews() {
 
   useEffect(() => {
     axios
-      .get("https://lawgikalai-auth-api.onrender.com/api/news/all")
+      .get(`${API_URL}/api/news/all`)
       .then((res) => {
         setNews(res.data.news || res.data);
         setLoading(false);

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -10,7 +11,7 @@ export default function Users() {
     if (!token) return setLoading(false);
 
     axios
-      .get("https://lawgikalai-auth-api.onrender.com/api/auth/all-users", {
+      .get(`${API_URL}/api/auth/all-users`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -19,6 +20,7 @@ export default function Users() {
       })
       .catch(() => setLoading(false));
   }, []);
+
 
   return (
     <div
