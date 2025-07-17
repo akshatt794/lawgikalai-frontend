@@ -35,6 +35,8 @@ function Navbar() {
       <Link to="/all-news" style={navLinkStyle}>All News</Link>
       <Link to="/users" style={navLinkStyle}>Users</Link>
       <Link to="/explore" style={navLinkStyle}>Explore</Link>
+      <Link to="/orders-upload">Upload Orders</Link>
+
     </nav>
   );
 }
